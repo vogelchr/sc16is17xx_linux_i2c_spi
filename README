@@ -1,0 +1,37 @@
+A proof of concept to talk to a sc16is750 spi/i2c connected uart,
+written for a colleague to test the sc16is750 in one of his designs
+and developed using a SparkFun SC16IS750 module.
+
+	http://www.nxp.com/products/interface_and_connectivity/bridges/i2c_spi_slave_to_uart_irda_gpio_bridges/series/SC16IS740_750_760.html
+
+	https://www.sparkfun.com/products/retired/9745 (p/n BOB-09745)
+	https://www.sparkfun.com/products/9981 (p/n BOB-09981)
+
+Tested using both the i2c and the spi interface of a raspberry pi,
+because that's my canonical testing platform... :-)
+
+Usage: ./sc16is7xx_demo [options]
+  -d  DEV    i2c or spi device node (df: /dev/i2c-0)
+  -a  ADDR   select i2c address (0 = spi, def: 77)
+  -b  BAUD   select baudrate (df: 115200)
+  -g  0xNN    set gpio port to value N
+
+If your sc16is750 module is connected via spi, then run...
+
+	./sc16is7xx_demo -d /dev/spidev-0.0 -a0
+
+...or if it's connected via i2c, then run...
+
+	./sc16is7xx_demo -d /dev/i2c-0 -a 0xADDR
+
+The program will print 
+
+	Virtual terminal is /dev/pts/1.
+
+and to that terminal you'll connect with a terminal program like 'cu'.
+
+	cu -l /dev/pts/1
+
+Whatever you now send on the serial terminal should be output on the
+uart module, and whatever the uart module receive should be printed
+on the serial terminal.
