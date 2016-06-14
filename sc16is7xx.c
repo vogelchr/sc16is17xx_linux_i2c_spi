@@ -78,7 +78,7 @@ sc16is7xx_reg_xfer_spi(struct sc16is7xx *p,
 	xfer.rx_buf = (__u64)(unsigned long)rxbuf;
 	xfer.tx_buf = (__u64)(unsigned long)txbuf;
 	xfer.len    = sizeof(txbuf);
-	xfer.cs_change = 1; /* deselect device after xfer */
+//	xfer.cs_change = 1; /* deselect device after xfer */
 
 	/* one single transfer */
 	if (ioctl(p->spi_i2c_fd,SPI_IOC_MESSAGE(1),&xfer) == -1) {
