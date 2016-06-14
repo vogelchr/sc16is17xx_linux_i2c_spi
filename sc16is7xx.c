@@ -429,7 +429,7 @@ sc16is7xx_new(int spi_i2c_fd, int i2c_addr, unsigned int flags)
 		printf("Init: reg %d = %d (0x%02x)\n",idt->regnum,
 			idt->val, idt->val);
 		if (sc16is7xx_reg_wr(p, idt->regnum, idt->val) == -1) {
-			perror("Cannot write init data.\n");
+			perror("Cannot write init data");
 			goto err_out;
 		}
 	}
